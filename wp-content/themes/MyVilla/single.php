@@ -24,7 +24,7 @@
                     <!-- pagination here -->
 
                     <!-- the loop -->
-                    <?php while ( have_posts() ) : the_post(); ?>
+                    <?php while (have_posts()) : the_post(); ?>
                         <div class="col-md-12">
                             <div class="media media-custom d-block mb-4">
                                 <a href="<?php the_permalink() ?>" title="Permanent Link to <?php the_title_attribute(); ?>" class="mb-4 d-block single-ps-img">
@@ -35,7 +35,6 @@
                                     <?php //the_date();the_time('F j, Y g:i a'); ?>
                                     <?php the_time('F j, Y g:i a'); ?>
                                 </span>
-                                <span class="meta-post"><?php the_category(); ?></span>
                                 <a href="<?php get_author_posts_url(get_the_author_meta('ID')) ?>">
                                    by <?php the_author(); ?>
                                 </a>
@@ -77,11 +76,13 @@
                     <?php if ($wp_query->have_posts()) : ?>
                     <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
                     <li>
-                      <a href="#" class="d-flex">
-                        <span class="mr-3 image"><img src="<?php bloginfo('template_url'); ?>/img/img_1.jpg" alt="Image placeholder" class="img-fluid"></span>
+                      <a href="<?php the_permalink() ?>" class="d-flex">
+                        <span class="mr-3 image side-cat">
+                          <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+                        </span>
                         <div>
-                          <span class="meta">February 27, 2018</span>
-                          <h3>Five Reasons to Stay at Villa Resort</h3>
+                          <span class="meta"><?php the_date(); ?></span>
+                          <h3><?php the_title(); ?></h3>
                         </div>
                       </a>
                     </li>
@@ -95,10 +96,12 @@
                 <div class="side-box">
                   <h2 class="heading">Categories</h2>
                   <ul class="post-categories list-unstyled">
-                    <li><a href="#">Events <span class="count">(12)</span></a></li>
-                    <li><a href="#">Resto bar <span class="count">(4)</span></a></li>
-                    <li><a href="#">Celebration <span class="count">(23)</span></a></li>
-                    <li><a href="#">Promos <span class="count">(8)</span></a></li>
+                  <?php
+                    $categories = get_categories();
+                    foreach ($categories as $category) { ?>
+                          <li><a href="<?= get_category_link($category->term_id) ?>"><?= $category->name ?> <span class="count">(<?= get_category($category->cat_ID)->count; ?>)</span></a></li>
+                      <?php } ?>
+                      <!-- end of the loop -->
                   </ul>
                 </div>
 
