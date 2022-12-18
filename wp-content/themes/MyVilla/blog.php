@@ -22,21 +22,21 @@ get_header();
     <section class="section bg-light post">
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="row mb-5">
                 <?php
-                // Define args
-                $args = array('post_type' => 'post');
-                // the query
-                $the_query = new WP_Query($args); ?>
+                  // Define args
+                  $args = array('post_type' => 'post');
+                  // the query
+                  $the_query = new WP_Query($args);
 
-                <?php if ( $the_query->have_posts() ) : ?>
+                  if ($the_query->have_posts()) : ?>
 
                     <!-- pagination here -->
 
                     <!-- the loop -->
-                    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                        <div class="col-md-6">
+                    <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+                        <div class="col-md-4">
                             <div class="media media-custom d-block mb-4">
                                 <a href="<?php the_permalink() ?>" title="Permanent Link to <?php the_title_attribute(); ?>" class="mb-4 d-block">
                                     <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
@@ -46,7 +46,8 @@ get_header();
                                     <?php //the_date();the_time('F j, Y g:i a'); ?>
                                     <?php the_time('F j, Y g:i a'); ?>
                                 </span>
-                                <span class="meta-post"><?php the_category(); ?></span>
+                                <!-- <span class="meta-post"><?php the_category(); ?></span> -->
+                                <!-- <span class="meta-post"><?php the_excerpt(); ?></span> -->
                                 <a href="<?php get_author_posts_url(get_the_author_meta('ID')) ?>">
                                    by <?php the_author(); ?>
                                 </a>
@@ -82,90 +83,6 @@ get_header();
                 </nav>
               </div>
             </div>
-          </div>
-          <!-- END content -->
-          <div class="col-md-4">
-            <div class="row">
-
-              <div class="col-md-11 ml-auto">
-
-
-                <form action="#" class="sidebar-search">
-                  <div class="form-group">
-                    <span class="fa fa-search icon-search"></span>
-                    <input type="text" class="form-control search-input"  placeholder="Search...">
-                  </div>
-                </form>    
-
-                <div class="side-box">
-                  <h2 class="heading">Popular Post</h2>
-                  <ul class="post-list list-unstyled">
-                    <li>
-                      <a href="#" class="d-flex">
-                        <span class="mr-3 image"><img src="<?php bloginfo('template_url'); ?>/img/img_1.jpg" alt="Image placeholder" class="img-fluid"></span>
-                        <div>
-                          <span class="meta">February 27, 2018</span>
-                          <h3>Five Reasons to Stay at Villa Resort</h3>
-                        </div>
-                      </a>
-                    </li>  
-                    <li>
-                      <a href="#" class="d-flex">
-                        <span class="mr-3 image"><img src="<?php bloginfo('template_url'); ?>/img/img_2.jpg" alt="Image placeholder" class="img-fluid"></span>
-                        <div>
-                          <span class="meta">February 27, 2018</span>
-                          <h3>Five Reasons to Stay at Villa Resort</h3>
-                        </div>
-                      </a>
-                    </li>  
-                    
-                    <li>
-                      <a href="#" class="d-flex">
-                        <span class="mr-3 image"><img src="<?php bloginfo('template_url'); ?>/img/img_1.jpg" alt="Image placeholder" class="img-fluid"></span>
-                        <div>
-                          <span class="meta">February 27, 2018</span>
-                          <h3>Five Reasons to Stay at Villa Resort</h3>
-                        </div>
-                      </a>
-                    </li>  
-                    <li>
-                      <a href="#" class="d-flex">
-                        <span class="mr-3 image"><img src="<?php bloginfo('template_url'); ?>/img/img_2.jpg" alt="Image placeholder" class="img-fluid"></span>
-                        <div>
-                          <span class="meta">February 27, 2018</span>
-                          <h3>Five Reasons to Stay at Villa Resort</h3>
-                        </div>
-                      </a>
-                    </li>  
-                    <li>
-                      <a href="#" class="d-flex">
-                        <span class="mr-3 image"><img src="<?php bloginfo('template_url'); ?>/img/img_3.jpg" alt="Image placeholder" class="img-fluid"></span>
-                        <div>
-                          <span class="meta">February 27, 2018</span>
-                          <h3>Five Reasons to Stay at Villa Resort</h3>
-                        </div>
-                      </a>
-                    </li>  
-                  </ul>
-                </div>
-
-                <div class="side-box">
-                  <h2 class="heading">Categories</h2>
-                  <ul class="post-categories list-unstyled">
-                    <li><a href="#">Events <span class="count">(12)</span></a></li>
-                    <li><a href="#">Resto bar <span class="count">(4)</span></a></li>
-                    <li><a href="#">Celebration <span class="count">(23)</span></a></li>
-                    <li><a href="#">Promos <span class="count">(8)</span></a></li>
-                  </ul>
-                </div>
-
-              </div>
-              
-
-             
-
-            </div>
-            
           </div>
         </div>
       </div>
