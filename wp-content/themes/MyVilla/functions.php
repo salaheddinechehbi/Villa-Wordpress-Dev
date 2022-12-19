@@ -25,3 +25,9 @@ add_theme_support( 'custom-logo', array(
     'height' => 480,
     'width'  => 720,
 ) );
+
+/* global $wpdb;
+$rows = $wpdb->get_row("SELECT * FROM sec_posts WHERE post_status = 'publish' AND post_type = 'post' ORDER BY comment_count DESC LIMIT 2");
+$rows = $wpdb->get_col("SELECT post_title FROM sec_posts WHERE post_status = 'publish' AND post_type = 'post' ORDER BY comment_count DESC LIMIT 2");
+//var_dump($wpdb->show_errors());
+var_dump($rows); */
