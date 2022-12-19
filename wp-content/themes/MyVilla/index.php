@@ -132,35 +132,39 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
+          
+          <?php
+                  // Define args
+                  $args = array('post_type' => 'post');
+                  // the query
+                  $posts = new WP_Query($args);
 
-            <div class="media media-custom d-block mb-4">
-              <a href="#" class="mb-4 d-block"><img src="<?php bloginfo('template_url'); ?>/img/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">Five Reasons to Stay at Villa Resort</a></h2>
-              </div>
-            </div>
+                  if ($posts->have_posts()) : ?>
 
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
-            <div class="media media-custom d-block mb-4">
-              <a href="#" class="mb-4 d-block"><img src="<?php bloginfo('template_url'); ?>/img/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">Five Reasons to Stay at Villa Resort</a></h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
-            <div class="media media-custom d-block mb-4">
-              <a href="#" class="mb-4 d-block"><img src="<?php bloginfo('template_url'); ?>/img/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">Five Reasons to Stay at Villa Resort</a></h2>
-              </div>
-            </div>
-          </div>
+                    <!-- pagination here -->
+
+                    <!-- the loop -->
+                    <?php while ($posts->have_posts()) : $posts->the_post(); ?>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
+                          <div class="media media-custom d-block mb-4">
+                            <a href="<?php the_permalink() ?>" title="Permanent Link to <?php the_title_attribute(); ?>" class="mb-4 d-block">
+                              <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+                            </a>
+                            <div class="media-body">
+                              <span class="meta-post"><?php the_time('F j, Y g:i a'); ?></span>
+                              <h2 class="mt-0 mb-3"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+                            </div>
+                          </div>
+                        </div>
+                    <?php endwhile; ?>
+                    <!-- end of the loop -->
+
+                    <!-- pagination here -->
+                    <?php wp_reset_postdata(); ?>
+
+                <?php else : ?>
+                    <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+                <?php endif; ?>
         </div>
       </div>
     </section>
