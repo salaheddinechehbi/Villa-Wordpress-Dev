@@ -25,8 +25,14 @@ get_header();
           <div class="col-md-12">
             <div class="row mb-5">
                 <?php
+                  // Define current page
+                  $currentPage = get_query_var('paged') ? get_query_var('paged') : 1;
                   // Define args
-                  $args = array('post_type' => 'post');
+                  $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 1,
+                    'paged' => $currentPage
+                  );
                   // the query
                   $the_query = new WP_Query($args);
 
@@ -69,7 +75,16 @@ get_header();
             <div class="row">
               <div class="col-md-12">
                 <nav role="navigation">
-                  <ul class="pagination custom-pagination pagination-lg">
+                  <?php
+                  $totalPage = $the_query->max_num_pages;
+                    echo paginate_links(array(
+                      'total' => $totalPage,
+                      'current' => $currentPage,
+                      'type' => 'list',
+                      'show_all' => true
+                    ));
+                  ?>
+                  <!-- <ul class="pagination custom-pagination pagination-lg">
                     <li class="page-item active">
                       <a class="page-link" href="">1</a>
                     </li>
@@ -79,7 +94,7 @@ get_header();
                     <li class="page-item ">
                       <a class="page-link" href="#">3</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </nav>
               </div>
             </div>
