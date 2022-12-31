@@ -70,7 +70,7 @@
                   <h2 class="heading">Popular Post</h2>
                   <ul class="post-list list-unstyled">
                     <?php
-                     $args2 = array('numberposts' => 2, 'category_name' => 'Excursions');
+                     $args2 = array('posts_per_page' => 3, 'category_name' => 'Excursions');
                      $wp_query = new WP_Query($args2);
                     ?>
                     <?php if ($wp_query->have_posts()) : ?>
