@@ -31,3 +31,38 @@ $rows = $wpdb->get_row("SELECT * FROM sec_posts WHERE post_status = 'publish' AN
 $rows = $wpdb->get_col("SELECT post_title FROM sec_posts WHERE post_status = 'publish' AND post_type = 'post' ORDER BY comment_count DESC LIMIT 2");
 //var_dump($wpdb->show_errors());
 var_dump($rows); */
+
+function custom_paging()
+{
+    global $paged; // current page
+    
+    if(empty($paged)) $paged = 1;
+    
+    global $the_query;
+    
+    $pages = $the_query->max_num_pages;
+    
+    if (!$pages) {
+        $pages = 1;
+    }
+
+    if ($pages != 1) {
+        echo '<ul class="pagination custom-pagination pagination-lg">';
+
+        //if($paged > 1) echo '<li><a href="'.get_pagenum_link($paged - 1).'" aria-label="Previous"> <span class="fa fa-angle-left"></span> Prev </a></li>';
+
+        for ($page = 1; $page <= $pages; $page++) {
+            $active = "";
+            if ($page == $paged){
+                $active = "active";
+            }
+            //echo  $page == $paged ? '<li class="active"><a href="#">'. $page. '</a></li>' : '<li><a href="'.get_pagenum_link($page).'">'. $page. '</a></li>';
+            echo $page == $page ? '<li class="page-item '. $active .'"><a class="page-link" href="'.get_pagenum_link($page).'">'. $page. '</a></li>' : '  <a class="page-link " href="'.get_pagenum_link($page).'">'. $page. '</a></li>';
+        }
+
+        //if($paged < $pages) echo '<li><a href="'.get_pagenum_link($paged + 1).'" aria-label="Next">Next <span class="fa fa-angle-right"></span></a></li>';
+
+        echo "</ul>\n";
+    }
+}
+

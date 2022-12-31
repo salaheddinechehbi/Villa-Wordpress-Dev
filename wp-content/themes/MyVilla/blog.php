@@ -76,13 +76,15 @@ get_header();
               <div class="col-md-12">
                 <nav role="navigation">
                   <?php
-                  $totalPage = $the_query->max_num_pages;
+
+                  echo custom_paging();
+                  /* $totalPage = $the_query->max_num_pages;
                     echo paginate_links(array(
                       'total' => $totalPage,
                       'current' => $currentPage,
                       'type' => 'list',
                       'show_all' => true
-                    ));
+                    )); */
                   ?>
                   <!-- <ul class="pagination custom-pagination pagination-lg">
                     <li class="page-item active">
