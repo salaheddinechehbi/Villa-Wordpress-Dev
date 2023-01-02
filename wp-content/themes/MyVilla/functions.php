@@ -17,6 +17,7 @@ add_theme_support( 'post-thumbnails' );
 //add_theme_support( 'post-thumbnails', array( 'post' ) );          // Posts only
 //add_theme_support( 'post-thumbnails', array( 'page' ) );          // Pages only
 //add_theme_support( 'post-thumbnails', array( 'post', 'movie' ) ); // Posts and Movies
+add_theme_support( 'post-thumbnails', array( 'room' ) );
 
 add_theme_support( 'post-formats',  array( 'aside', 'gallery', 'quote', 'image', 'video' ) );
 
@@ -64,5 +65,14 @@ function custom_paging()
 
         echo "</ul>\n";
     }
+}
+
+add_action('init', 'register_rooms_cpt');
+function register_rooms_cpt(){
+    register_post_type( 'room', [
+        'label' => 'Rooms',
+        'public' => true,
+        'capability_type' => 'post',
+    ] );
 }
 

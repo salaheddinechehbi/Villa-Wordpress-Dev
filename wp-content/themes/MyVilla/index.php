@@ -21,7 +21,48 @@
             <h2 class="heading" data-aos="fade-right">You Can Visit</h2>
           </div>
         </div>
+
         <div class="row">
+          
+            <?php
+              // Define args
+              $args = array('post_type' => 'room');
+              // the query
+              $rooms = new WP_Query($args);
+              
+              if ($rooms->have_posts()) : ?>
+
+                <!-- pagination here -->
+
+                <!-- the loop -->
+                <?php while ($rooms->have_posts()) : $rooms->the_post();?>
+                    
+                    <div class="col-lg-3 col-md-6 visit mb-3" data-aos="fade-right">
+                      <a href="<?php the_permalink() ?>"><img src="<?php bloginfo('template_url'); ?>/img/img_1.jpg" alt="Image placeholder" class="img-fluid"> </a>
+                      <h3><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h3>
+                      <div class="reviews-star float-left">
+                        <span class="ion-android-star"></span>
+                        <span class="ion-android-star"></span>
+                        <span class="ion-android-star"></span>
+                        <span class="ion-android-star-half"></span>
+                        <span class="ion-android-star-outline"></span>
+                      </div>
+                      <span class="reviews-count float-right">
+                      <?= the_field('bed'); ?> Bed, <?= the_field('surface'); ?>m
+                      </span>
+                    </div>
+                <?php endwhile; ?>
+                <!-- end of the loop -->
+
+                <!-- pagination here -->
+                <?php wp_reset_postdata(); ?>
+
+            <?php else : ?>
+                <p><?php _e('Sorry, no rooms matched your criteria.'); ?></p>
+            <?php endif; ?>
+
+          
+          <!--
           <div class="col-lg-3 col-md-6 visit mb-3" data-aos="fade-right">
             <a href="restaurant.html"><img src="<?php bloginfo('template_url'); ?>/img/img_1.jpg" alt="Image placeholder" class="img-fluid"> </a>
             <h3><a href="restaurant.html">Food &amp; Wines</a></h3>
@@ -77,7 +118,7 @@
             <span class="reviews-count float-right">
               6,421 reviews
             </span>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
