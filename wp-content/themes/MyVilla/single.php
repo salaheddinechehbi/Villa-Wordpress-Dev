@@ -43,7 +43,13 @@
                                 <div>
                                     <?php the_content(); ?>
                                 </div>
-                                <?php comments_template(); ?>
+                                <?php
+                                    if (the_field('post_type') === "room") {
+                                      comments_template();
+                                    } else {
+                                      echo "No Comment";
+                                    }
+                                ?>
                                 </div>
                             </div>
                         </div>
