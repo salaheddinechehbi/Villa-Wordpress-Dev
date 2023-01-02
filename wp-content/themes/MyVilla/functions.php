@@ -17,7 +17,9 @@ add_theme_support( 'post-thumbnails' );
 //add_theme_support( 'post-thumbnails', array( 'post' ) );          // Posts only
 //add_theme_support( 'post-thumbnails', array( 'page' ) );          // Pages only
 //add_theme_support( 'post-thumbnails', array( 'post', 'movie' ) ); // Posts and Movies
-add_theme_support( 'post-thumbnails', array( 'room' ) );
+//add_theme_support( 'post-thumbnails', array( 'room' ) );
+add_post_type_support( 'room', array('thumbnail', 'excerpt') );
+//'supports' => array( 'title', 'editor', 'comments', 'excerpt', 'custom-fields', 'thumbnail' )
 
 add_theme_support( 'post-formats',  array( 'aside', 'gallery', 'quote', 'image', 'video' ) );
 
