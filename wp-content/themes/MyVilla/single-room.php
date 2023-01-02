@@ -4,8 +4,8 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center">
-            <h1 class="heading" data-aos="fade-up">Blog</h1>
-            <p class="sub-heading mb-5" data-aos="fade-up" data-aos-delay="100">Events, news and activities in the hotel.</p>
+            <h1 class="heading" data-aos="fade-up">Rooms</h1>
+            <p class="sub-heading mb-5" data-aos="fade-up" data-aos-delay="100">Rooms and activities in the hotel.</p>
           </div>
         </div>
         <!-- <a href="#" class="scroll-down">Scroll Down</a> -->
@@ -43,9 +43,6 @@
                                 <div>
                                     <?php the_content(); ?>
                                 </div>
-                                <?php
-                                    comments_template();
-                                ?>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +69,7 @@
                   <h2 class="heading">Popular Post</h2>
                   <ul class="post-list list-unstyled">
                     <?php
-                     $args2 = array('posts_per_page' => 3, 'category_name' => 'Excursions');
+                     $args2 = array('posts_per_page' => 3, 'post_type' => 'room');
                      $wp_query = new WP_Query($args2);
                     ?>
                     <?php if ($wp_query->have_posts()) : ?>
