@@ -30,7 +30,7 @@ get_header();
                   // Define args
                   $args = array(
                     'post_type' => 'post',
-                    'posts_per_page' => 1,
+                    'posts_per_page' => 9,
                     'paged' => $currentPage
                   );
                   // the query

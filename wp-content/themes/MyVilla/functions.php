@@ -70,11 +70,53 @@ function custom_paging()
 }
 
 add_action('init', 'register_rooms_cpt');
-function register_rooms_cpt(){
-    register_post_type( 'room', [
+function register_rooms_cpt() {
+    $argc = array(
         'label' => 'Rooms',
         'public' => true,
+        'publicly_queryable' => true,
         'capability_type' => 'post',
-    ] );
+        'hierarchical' => false,
+        //'rewrite' => true,
+        'rewrite' => array('slug' => 'room'),
+        'query_var' => true,
+        'menu_position' => 3,
+        'has_archive' => true,
+        //'supports' => array('title', 'thumbnail'),
+        'show_ui' => true,
+        'show_in_menu' => true,
+    );
+    register_post_type('room', $argc);
 }
+add_action('init', 'register_event_cpt');
+function register_event_cpt() {
+    $argc = array(
+        'label' => 'Events',
+        'public' => true,
+        'publicly_queryable' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        //'rewrite' => true,
+        'rewrite' => array('slug' => 'event'),
+        'query_var' => true,
+        'menu_position' => 4,
+        'has_archive' => true,
+        'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
+        'show_ui' => true,
+        'show_in_menu' => true,
+    );
+    register_post_type('event', $argc);
+}
+function remove_footer_admin () {
+    echo 'We Lead Solutions is Awesome. Thank you <a href="http://welead.ma">We Lead Solutions</a> for giving me this filter.';
+}
+add_filter('admin_footer_text', 'remove_footer_admin');
+
+function wpb_remove_version() {
+    return '';
+}
+add_filter('the_generator', 'wpb_remove_version');
+
+remove_filter('comment_text', 'make_clickable', 9);
+
 
