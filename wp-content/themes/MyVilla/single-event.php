@@ -4,8 +4,8 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center">
-            <h1 class="heading" data-aos="fade-up">Rooms</h1>
-            <p class="sub-heading mb-5" data-aos="fade-up" data-aos-delay="100">Rooms and activities in the hotel.</p>
+            <h1 class="heading" data-aos="fade-up">Events</h1>
+            <p class="sub-heading mb-5" data-aos="fade-up" data-aos-delay="100">Events and activities in the hotel.</p>
           </div>
         </div>
         <!-- <a href="#" class="scroll-down">Scroll Down</a> -->
@@ -17,7 +17,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
+
             <div class="row mb-5">
+
             </div>
 
           </div>
@@ -28,7 +30,7 @@
               <div class="col-md-11 ml-auto">
 
                 <div class="side-box">
-                  <h2 class="heading">Rooms</h2>
+                  <h2 class="heading">Events</h2>
                   <ul class="post-categories list-unstyled">
                   
                       <!-- end of the loop -->
