@@ -119,4 +119,8 @@ add_filter('the_generator', 'wpb_remove_version');
 
 remove_filter('comment_text', 'make_clickable', 9);
 
+// Remove the admin bar from the front end
+add_filter( 'show_admin_bar', '__return_false' );
+
+
 
