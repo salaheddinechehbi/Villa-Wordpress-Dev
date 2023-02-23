@@ -77,7 +77,7 @@
         <div class="row">
             <?php
             // Define args
-            $args = array('post_type' => 'event');
+            $args = array('post_type' => 'event', 'posts_per_page' => 3, 'order'=> 'DESC');
             // the query
             $events = new WP_Query($args);
             if ($events->have_posts()) : ?>
@@ -117,7 +117,7 @@
         <div class="row">
             <?php
             // Define args
-            $args = array('post_type' => 'post');
+            $args = array('post_type' => 'post', 'order'=> 'DESC');
             // the query
             $posts = new WP_Query($args);
             if ($posts->have_posts()) : ?>
